@@ -32,8 +32,11 @@
                     <ul class="navbar-nav me-auto">
 
                         @if(Auth::check()&& auth()->user()->role == 1)
-                        <a href="{{route('studentlist')}}" class="btn btn-primary mx-5">StudentList</a>
-                        <a href="{{route('addteacher')}}" class="btn btn-primary">AddTeacher</a>
+                        {{-- <a href="{{route('studentlist')}}" class="btn btn-primary mx-5">StudentList</a> --}}
+                        <a href="{{route('teacher')}}" class="btn btn-primary mx-1">TeacherList</a>
+                        <a href="{{route('session')}}" class="btn btn-primary mx-1">SessionList</a>
+                        <a href="{{route('course')}}" class="btn btn-primary mx-1">CourseList</a>
+                        <a href="{{route('assigncourse')}}" class="btn btn-primary mx-1">Assign Course</a>
                         @endif
                     </ul>
 

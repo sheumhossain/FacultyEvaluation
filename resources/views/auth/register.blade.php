@@ -55,9 +55,10 @@
                                 <div class="col-md-6">
                                     <select name="session" required  class="form-select" aria-label="Default select example">
                                         <option selected>Select Your Session</option>
-                                        @for ($i = 2015; $i <= 2030; $i++)
-                                            <option value="{{ $i }}">{{$i}}</option>
-                                        @endfor
+                                        {{$sessions = App\Models\Session::all()}}
+                                        @foreach($sessions as $session)
+                                        <option value="{{$session['id']}}">{{$session['session']}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
