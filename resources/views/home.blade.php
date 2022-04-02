@@ -1,27 +1,42 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
-    @foreach(App\Models\Teacher::all() as $teacher)
     <div class="row justify-content-center py-2">
         <div class="col-md-8">
             <div class="card">
-               
-                <div class="card-header"><a href="{{route('ratingpage',$teacher['id'])}}">Name : {{ $teacher['name']}}</a></div>
-                {{-- @if(Auth::check()&& auth()->user()->role == 1)
-                <div class="card-header">Name : {{ $teacher['name']}}</div>
+                @if(Auth::user()->role==1)
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th>Sessions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($datas as $data)
+                        <tr>
+                            <td><a href="{{route('courseteacher',$data['id'])}}">{{$data['session']}}</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 @else
-                <div class="card-header"><a href="">Name : {{ $teacher['name']}}</a></div>
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th>Teachers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($datas as $data)
+                        <tr>
+                            <td><a href="{{route('ratingpage',$data['id'])}}">{{ $data['name']}}</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 @endif
-                <div class="card-body">
-                  <p>Subject : {{ $teacher['subject']}}</p>
-                        @if(Auth::check()&& auth()->user()->role == 1)
-                        <p>rating : {{ $teacher['rating']==0?"not rated": $teacher['rating']}}</p>
-                        @endif
-                </div> --}}
             </div>
         </div>
     </div>
-    @endforeach
 </div>
 @endsection

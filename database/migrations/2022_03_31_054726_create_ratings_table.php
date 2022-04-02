@@ -15,6 +15,27 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('student_id')->unsigned();
+            $table->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
+            $table->bigInteger('session_id')->unsigned();
+            $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
+            $table->bigInteger('teacher_id')->unsigned();
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->bigInteger('course_id')->unsigned();
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->unsignedTinyInteger('prepared');
+            $table->unsignedTinyInteger('knows');
+            $table->unsignedTinyInteger('organised');
+            $table->unsignedTinyInteger('plan_assignment');
+            $table->unsignedTinyInteger('flexible');
+            $table->unsignedTinyInteger('time');
+            $table->unsignedTinyInteger('homework');
+            $table->unsignedTinyInteger('grade');
+            $table->unsignedTinyInteger('clear');
+            $table->unsignedTinyInteger('creative');
+            $table->unsignedTinyInteger('feedback');
+            $table->unsignedTinyInteger('encourage');
+            $table->unsignedTinyInteger('learned');
             $table->timestamps();
         });
     }

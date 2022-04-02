@@ -4,20 +4,20 @@
     <div class="row">
         <div class="col-md-6 offset-3">
             <h1>Give Rating For {{$teacher['name']}}</h1>
-            <h3>Select Course</h3>
-             <select required name="course" class="form-control">
-                 <option selected>Choose...</option>
-                 {{$courses = App\Models\Course::all()}}
-                 @foreach($courses as $course)
-                 <option value="{{$course['id']}}">{{$course['name']}}</option>
-                 @endforeach
-             </select>
+            @php 
+            $session_id = Auth::user()->session;
+            $course_id = App\Models\AssignCourse::where('session_id','=',$session_id)
+                                                ->where('teacher_id','=',$teacher['id'])->value('course_id');
+            @endphp
+            <h3>Course is : {{App\Models\Course::find($course_id)['name']}}</h3>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-md-8 offset-2">
-            <form method="POST" action=""> 
+            <form method="POST" action="{{route('addrating',$teacher['id'])}} "> 
                 @csrf
+                <input type="hidden" name="teacher_id" value="{{$teacher['id']}}">
+                <input type="hidden" name="course_id" value="{{$course_id}}">
                 <table class="table table-striped table-dark">
                     <tbody>
                     <tr>
@@ -27,31 +27,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="prepared">
+                            <input required value="1" class="form-check-input" type="radio" name="prepared">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="prepared">
+                            <input required value="2" class="form-check-input" type="radio" name="prepared">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="prepared">
+                            <input required value="3" class="form-check-input" type="radio" name="prepared">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="prepared">
+                            <input required value="4" class="form-check-input" type="radio" name="prepared">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="prepared">
+                            <input required value="5" class="form-check-input" type="radio" name="prepared">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -65,31 +65,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="knows">
+                            <input required value="1" class="form-check-input" type="radio" name="knows">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="knows">
+                            <input required value="2" class="form-check-input" type="radio" name="knows">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="knows">
+                            <input required value="3" class="form-check-input" type="radio" name="knows">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="knows">
+                            <input required value="4" class="form-check-input" type="radio" name="knows">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="knows">
+                            <input required value="5" class="form-check-input" type="radio" name="knows">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -103,31 +103,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="organised">
+                            <input required value="1" class="form-check-input" type="radio" name="organised">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="organised">
+                            <input required value="2" class="form-check-input" type="radio" name="organised">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="organised">
+                            <input required value="3" class="form-check-input" type="radio" name="organised">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="organised">
+                            <input required value="4" class="form-check-input" type="radio" name="organised">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="organised">
+                            <input required value="5" class="form-check-input" type="radio" name="organised">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -142,31 +142,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="plan_assignment">
+                            <input required value="1" class="form-check-input" type="radio" name="plan_assignment">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="plan_assignment">
+                            <input required value="2" class="form-check-input" type="radio" name="plan_assignment">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="plan_assignment">
+                            <input required value="3" class="form-check-input" type="radio" name="plan_assignment">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="plan_assignment">
+                            <input required value="4" class="form-check-input" type="radio" name="plan_assignment">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="plan_assignment">
+                            <input required value="5" class="form-check-input" type="radio" name="plan_assignment">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -180,31 +180,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="flexible">
+                            <input required value="1" class="form-check-input" type="radio" name="flexible">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="flexible">
+                            <input required value="2" class="form-check-input" type="radio" name="flexible">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="flexible">
+                            <input required value="3" class="form-check-input" type="radio" name="flexible">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="flexible">
+                            <input required value="4" class="form-check-input" type="radio" name="flexible">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="flexible">
+                            <input required value="5" class="form-check-input" type="radio" name="flexible">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -216,31 +216,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="time">
+                            <input required value="1" class="form-check-input" type="radio" name="time">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="time">
+                            <input required value="2" class="form-check-input" type="radio" name="time">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="time">
+                            <input required value="3" class="form-check-input" type="radio" name="time">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="time">
+                            <input required value="4" class="form-check-input" type="radio" name="time">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="time">
+                            <input required value="5" class="form-check-input" type="radio" name="time">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -252,31 +252,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="homework">
+                            <input required value="1" class="form-check-input" type="radio" name="homework">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="homework">
+                            <input required value="2" class="form-check-input" type="radio" name="homework">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="homework">
+                            <input required value="3" class="form-check-input" type="radio" name="homework">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="homework">
+                            <input required value="4" class="form-check-input" type="radio" name="homework">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="homework">
+                            <input required value="5" class="form-check-input" type="radio" name="homework">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -288,31 +288,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="grade">
+                            <input required value="1" class="form-check-input" type="radio" name="grade">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="grade">
+                            <input required value="2" class="form-check-input" type="radio" name="grade">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="grade">
+                            <input required value="3" class="form-check-input" type="radio" name="grade">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="grade">
+                            <input required value="4" class="form-check-input" type="radio" name="grade">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="grade">
+                            <input required value="5" class="form-check-input" type="radio" name="grade">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -325,31 +325,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="clear">
+                            <input required value="1" class="form-check-input" type="radio" name="clear">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="clear">
+                            <input required value="2" class="form-check-input" type="radio" name="clear">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="clear">
+                            <input required value="3" class="form-check-input" type="radio" name="clear">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="clear">
+                            <input required value="4" class="form-check-input" type="radio" name="clear">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="clear">
+                            <input required value="5" class="form-check-input" type="radio" name="clear">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -361,31 +361,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="creative">
+                            <input required value="1" class="form-check-input" type="radio" name="creative">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="creative">
+                            <input required value="2" class="form-check-input" type="radio" name="creative">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="creative">
+                            <input required value="3" class="form-check-input" type="radio" name="creative">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="creative">
+                            <input required value="4" class="form-check-input" type="radio" name="creative">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="creative">
+                            <input required value="5" class="form-check-input" type="radio" name="creative">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -398,31 +398,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="feedback">
+                            <input required value="1" class="form-check-input" type="radio" name="feedback">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="feedback">
+                            <input required value="2" class="form-check-input" type="radio" name="feedback">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="feedback">
+                            <input required value="3" class="form-check-input" type="radio" name="feedback">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="feedback">
+                            <input required value="4" class="form-check-input" type="radio" name="feedback">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="feedback">
+                            <input required value="5" class="form-check-input" type="radio" name="feedback">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -435,31 +435,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="encourage">
+                            <input required value="1" class="form-check-input" type="radio" name="encourage">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="encourage">
+                            <input required value="2" class="form-check-input" type="radio" name="encourage">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="encourage">
+                            <input required value="3" class="form-check-input" type="radio" name="encourage">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="encourage">
+                            <input required value="4" class="form-check-input" type="radio" name="encourage">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="encourage">
+                            <input required value="5" class="form-check-input" type="radio" name="encourage">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -472,31 +472,31 @@
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="learned">
+                            <input required value="1" class="form-check-input" type="radio" name="learned">
                             <label class="form-check-label">1</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="learned">
+                            <input required value="2" class="form-check-input" type="radio" name="learned">
                             <label class="form-check-label">2</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="learned">
+                            <input required value="3" class="form-check-input" type="radio" name="learned">
                             <label class="form-check-label">3</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="learned">
+                            <input required value="4" class="form-check-input" type="radio" name="learned">
                             <label class="form-check-label">4</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-check mx-3">
-                            <input class="form-check-input" type="radio" name="learned">
+                            <input required value="5" class="form-check-input" type="radio" name="learned">
                             <label class="form-check-label">5</label>
                         </div>
                     </td>
@@ -504,8 +504,8 @@
                 </tr>                
                     </tbody>
                 </table>
-                 <div class="col-md-12 text-center my-5">
-                 <button type="submit" class="btn btn-primary text-center">Submit</button>
+                 <div class="col-md-12 text-center my-4">
+                 <button type="submit" class="btn btn-outline-success text-center">Give Rating</button>
                  </div>
              </form>
         </div>

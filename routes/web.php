@@ -8,7 +8,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\AssignCourseController;
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,9 +33,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::get('/addteacher', [TeacherController::class, 'teacherform'])->name('addteacher');
 // Route::post('/addteacher', [TeacherController::class, 'addteacher'])->name('addteacher');
 // Route::get('/rating/{id}',[TeacherController ::class, 'rating'])->name('rating');
-Route::get('/profile', function(){
-    return view('profile');
-})->name('profile');
+
+Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+
 
 Route::get('/addpost', function(){
     return view('addpost');
@@ -76,5 +76,15 @@ Route::post('/assigncourse/{id}', [AssignCourseController::class, 'eassigncourse
 
 // rating routes
 Route::get('/ratingpage/{id}', [RatingController::class, 'ratingpage'])->name('ratingpage');
+Route::post('/addrating/{id}', [RatingController::class, 'addrating'])->name('addrating');
+Route::delete('/destroyrating/{id}', [RatingController::class, 'destroyrating'])->name('destroyrating');
+Route::get('/updateratingpage/{id}', [RatingController::class, 'updateratingpage'])->name('updateratingpage');
+Route::post('/updaterating/{id}', [RatingController::class, 'updaterating'])->name('updaterating');
 //! rating routes
+
+// admin route
+Route::get('/courseteacher/{id}', [AdminController::class, 'courseteacher'])->name('courseteacher');
+Route::get('/subject_teacher_rating/{session_id}/{course_id}/{teacher_id}', [AdminController::class, 'subjectTeacherRating'])->name('subject_teacher_rating');
+
+//! admin route
 
