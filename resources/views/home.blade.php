@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+<div class="container-fluid" >
     <div class="row justify-content-center py-2">
         <div class="col-md-8">
             <div class="card">
@@ -10,7 +10,7 @@
                         <tr>
                             <th>Sessions</th>
                         </tr>
-                    </thead>
+                    </thead> 
                     <tbody>
                         @foreach($datas as $data)
                         <tr>
@@ -29,7 +29,7 @@
                     <tbody>
                         @foreach($datas as $data)
                         <tr>
-                            <td><a href="{{route('ratingpage',$data['id'])}}">{{ $data['name']}}</a></td>
+                            <td><a href="{{route('ratingpage',[$data['course_id'],$data['teacher_id']])}}">{{App\Models\Course::find($data['course_id'])['name']}} => {{ App\Models\Teacher::find($data['teacher_id'])['name']}}</a></td>
                         </tr>
                         @endforeach
                     </tbody>

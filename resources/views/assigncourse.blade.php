@@ -44,12 +44,14 @@
     <div class="row mt-5">
         <div class="col-md-6 offset-3">
             <h1>Assigned Courses</h1>
-            <table class="table table-striped">
+            <table class="table  table-dark table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Teacher</th>
                     <th scope="col">Session</th>
                     <th scope="col">Course</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody>

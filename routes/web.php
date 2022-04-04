@@ -37,9 +37,9 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
 
 
-Route::get('/addpost', function(){
-    return view('addpost');
-})->name('addpost');
+// Route::get('/addpost', function(){
+//     return view('addpost');
+// })->name('addpost');
 // Route::post('/updaterate/{id}', [TeacherController::class, 'updaterating'])->name('updaterate');
 
 // sessions route
@@ -75,7 +75,7 @@ Route::post('/assigncourse/{id}', [AssignCourseController::class, 'eassigncourse
 //! assigncourses route
 
 // rating routes
-Route::get('/ratingpage/{id}', [RatingController::class, 'ratingpage'])->name('ratingpage');
+Route::get('/ratingpage/{course_id}/{teacher_id}', [RatingController::class, 'ratingpage'])->name('ratingpage');
 Route::post('/addrating/{id}', [RatingController::class, 'addrating'])->name('addrating');
 Route::delete('/destroyrating/{id}', [RatingController::class, 'destroyrating'])->name('destroyrating');
 Route::get('/updateratingpage/{id}', [RatingController::class, 'updateratingpage'])->name('updateratingpage');

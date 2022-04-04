@@ -25,22 +25,39 @@
     <div class="row mt-5">
         <div class="col-md-6 offset-3">
             <h1>All courses</h1>
-            <ol>
-            @foreach($courses as $course)
-
-                    <li class="d-flex justify-content-between my-2">
-                        {{ $course['name']}}
-                            <a href="{{route('editcourse',$course['id'])}}" class="btn btn-outline-success">Edit</a>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $i = 1;    
+                    @endphp
+                    @foreach($courses as $course)
+                    <tr>
+                        <td>{{$i}}</td>
+                        <td> {{ $course['name']}}</td>
+                        <td><a href="{{route('editcourse',$course['id'])}}" class="btn btn-outline-success">Edit</a></td>
+                        <td>
                             <form method="post" action="{{route('destroycourse',$course['id'])}}" 
                             onsubmit="return confirm('Sure?')">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Delete" class="btn btn-outline-danger"/>
                             </form>
-                    </span>
-                    </li>
-            @endforeach
-            </ol>
+                        </td>
+                    </tr>
+                    @php
+                    $i++;
+                    @endphp
+                    @endforeach
+                </tbody>
+              </table>
         </div>
     </div>
 

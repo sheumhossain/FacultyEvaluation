@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Teacher;
+use App\Models\Course;
 use App\Models\Rating;
 
 class RatingController extends Controller
 {
-    public function ratingpage($id){
-        $teacher = Teacher::find($id);
-        return view('ratingpage',['teacher'=>$teacher]);
+    public function ratingpage($course_id,$teacher_id){
+        $teacher = Teacher::find($teacher_id);
+        $course = Course::find($course_id);
+        return view('ratingpage',['teacher'=>$teacher,'course'=>$course]);
     }
     public function addrating(Request $request){
         $new_rating = new Rating();

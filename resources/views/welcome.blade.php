@@ -15,7 +15,7 @@
     {{-- {{ Redirect::to('home') }} --}}
     <script>window.location = "/home";</script>
     @endif
-    <div class="bg-image" style="background-image: url({{url('images/hill.png')}});
+    <div class="bg-image" style="background-image: url({{url('images/ratings.jpg')}});
     background-size: cover;
       position: absolute;
       top: 0px;
@@ -36,12 +36,12 @@
                 @endauth
             </div>
         @endif
-        <div class="text-center " style="position: relative;  color: #000;  
+        {{-- <div class="text-center " style="position: relative;  color: #000;  
         font-size: 3rem;
         line-height: 0.9;margin-top:200px">
             <p>Welcome to Faculty Evaluation System</p>
             <p>Please login to rate Faculty Members</p>
-        </div>
+        </div> --}}
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

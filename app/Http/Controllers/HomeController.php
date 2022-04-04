@@ -46,19 +46,19 @@ class HomeController extends Controller
             }
             return view('home',['datas'=>$sessions]);
         }else{
-            $allteacher = Teacher::all();
+            $assignedcourses = AssignCourse::where('session_id','=',Auth::user()->session)->get();
             $ratings = Rating::where('student_id','=',Auth::user()->id)->get();
             $teachers = array();
-            foreach($allteacher as $teacher){
+            foreach($assignedcourses as $assignedcourse){
                 $flag = true;
                 foreach($ratings as $rating){
-                    if($teacher['id']==$rating['teacher_id']){
+                    if($assignedcourse['course_id']==$rating['course_id']){
                         $flag = false;
                         break;
                     }
                 }
                 if($flag==true){
-                    array_push($teachers,$teacher);
+                    array_push($teachers,$assignedcourse);
                 }
             }
             return view('home',['datas'=>$teachers]);

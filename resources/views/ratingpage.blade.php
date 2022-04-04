@@ -4,12 +4,7 @@
     <div class="row">
         <div class="col-md-6 offset-3">
             <h1>Give Rating For {{$teacher['name']}}</h1>
-            @php 
-            $session_id = Auth::user()->session;
-            $course_id = App\Models\AssignCourse::where('session_id','=',$session_id)
-                                                ->where('teacher_id','=',$teacher['id'])->value('course_id');
-            @endphp
-            <h3>Course is : {{App\Models\Course::find($course_id)['name']}}</h3>
+            <h3>Course is : {{$course['name']}}</h3>
         </div>
     </div>
     <div class="row mt-5">
@@ -17,7 +12,7 @@
             <form method="POST" action="{{route('addrating',$teacher['id'])}} "> 
                 @csrf
                 <input type="hidden" name="teacher_id" value="{{$teacher['id']}}">
-                <input type="hidden" name="course_id" value="{{$course_id}}">
+                <input type="hidden" name="course_id" value="{{$course['id']}}">
                 <table class="table table-striped table-dark">
                     <tbody>
                     <tr>
